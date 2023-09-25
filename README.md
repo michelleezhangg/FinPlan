@@ -2,6 +2,8 @@
 
 **Title**: FinPlan
 
+**Blockly link**: https://michelleezhangg.github.io/FinPlan
+
 **Group Members**: Apoorva Chilukuri, Briana Craig, Cece Hagen, Michelle Zhang
 
 **Motivation**: Our motivation for this project is to improve financial literacy as well as make it easier for others who struggle with financial planning and budgeting. This topic has affected our entire group in its own ways, and it was a perfect way to give back to the community as well as push our own learning.
