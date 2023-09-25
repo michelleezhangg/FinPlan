@@ -1,9 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>FinPlan HTML Page</title>
+    <title>Blockly Workspace</title>
+    <!-- Include Blockly's JavaScript library -->
+    <script src="https://unpkg.com/blockly@5.0.0/blockly.min.js"></script>
+    <!-- Include Blockly's CSS for styling -->
+    <link rel="stylesheet" href="https://unpkg.com/blockly@5.0.0/blockly.css">
 </head>
 <body>
-Content goes here.
+    <!-- Create a container for the Blockly workspace -->
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <!-- Include the Blockly JavaScript code -->
+    <script>
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox'),
+        });
+    </script>
+    <!-- Include the Blockly toolbox definition (customize as needed) -->
+    <xml id="toolbox" style="display: none">
+        <category name="My Blocks">
+            <!-- Add your custom blocks here -->
+        </category>
+    </xml>
 </body>
 </html>
