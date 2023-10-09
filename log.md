@@ -1,6 +1,7 @@
 Apoorva:
 - She did the annotated references for the design portion of the project
 - She updated the README with milestones
+- She helped with research and propsed project idea
 
 Briana:
 - She created the HTML code for the GitHub io page and created the definitions for the blocks in design 2 with the pseudo-code along with the recursive cases. She used AI to troubleshoot GitHub pages when it didn't work as we intended. 
