@@ -2,7 +2,7 @@
 
 **Title**: FinPlan
 
-**Blockly link**: [https://michelleezhangg.github.io/FinPlan/design-blocks/index.html](https://michelleezhangg.github.io/FinPlan/design-blocks/)
+**Blockly link**: [https://michelleezhangg.github.io/FinPlan/design-blocks/](https://michelleezhangg.github.io/FinPlan/design-blocks/)
 
 **Group Members**: Apoorva Chilukuri, Briana Craig, Cece Hagen, Michelle Zhang
 
