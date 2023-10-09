@@ -20,6 +20,7 @@
     <div class="row button-row">
         <button onclick="generateCode()">Generate JavaScript</button>
         <button onclick="runCode()">Run JavaScript</button>
+        <button onclick="saveCode()">Save JavaScript</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
@@ -37,6 +38,21 @@
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
+        }
+
+        function saveCode() {
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+
+            // Create a Blob containing the JavaScript code
+            var blob = new Blob([code], { type: 'application/javascript' });
+
+            // Create a download link for the Blob
+            var a = document.createElement('a');
+            a.download = 'fin_plan.js';
+            a.href = URL.createObjectURL(blob);
+
+            // Trigger a click event to initiate the download
+            a.click();
         }
 
         function runCode() {
