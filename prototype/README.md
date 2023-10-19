@@ -40,4 +40,4 @@
     - This value shows how much debt you are in
 
 ## Presentation Slides Link
-![Presentation Slides](https://docs.google.com/presentation/d/1YuTZvJ-aFWsFlSW3kzyeNQtCwdzdte3kYYWwLUou9iE/edit#slide=id.g28ca5ca6fef_0_313)
+![Presentation Slides](https://docs.google.com/presentation/d/1YuTZvJ-aFWsFlSW3kzyeNQtCwdzdte3kYYWwLUou9iE/edit#slide=id.p)
