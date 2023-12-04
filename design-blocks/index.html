@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Financial Planning with Blockly</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="budget_blocks.js"></script>
+</head>
+<body>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <div id="financialSummary">
+        <p id="incomeDisplay">Total Income: 0</p>
+        <p id="expenseDisplay">Total Expenses: 0</p>
+        <p id="budgetDisplay">Net Budget: 0</p>
+    </div>
+
+    <script>
+        var workspace = Blockly.inject('blocklyDiv',
+            {toolbox: document.getElementById('toolbox')});
+    </script>
+
+    <xml id="toolbox" style="display: none">
+        <block type="income_block"></block>
+        <block type="expense_block"></block>
+        <block type="budget_calculator_block"></block>
+    </xml>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
     <title>Financial Blockly App</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
@@ -91,3 +120,4 @@
     </script>
 </body>
 </html>
+-->
