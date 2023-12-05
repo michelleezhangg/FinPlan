@@ -46,6 +46,17 @@
             <block type="input_number"></block> <!-- Add the input_number block -->
         </xml>
     </div>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <div id="financialSummary">
+        <p id="incomeDisplay">Total Income: 0</p>
+        <p id="expenseDisplay">Total Expenses: 0</p>
+        <p id="budgetDisplay">Net Budget: 0</p>
+    </div>
+    <xml id="toolbox" style="display: none">
+        <block type="income_block"></block>
+        <block type="expense_block"></block>
+        <block type="budget_calculator_block"></block>
+    </xml>
     <div class="row button-row">
         <button onclick="generateCode()">Generate JavaScript</button>
         <button onclick="runCode()">Run JavaScript</button>
