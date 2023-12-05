@@ -1,4 +1,100 @@
+// Define the 'income_block'
+Blockly.Blocks['income_block'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Income Source:")
+        .appendField(new Blockly.FieldTextInput("Salary"), "SOURCE")
+        .appendField("Amount:")
+        .appendField(new Blockly.FieldNumber(1000, 0), "AMOUNT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+  }
+};
 
+// Define the 'expense_block'
+Blockly.Blocks['expense_block'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Expense Category:")
+        .appendField(new Blockly.FieldTextInput("Rent"), "CATEGORY")
+        .appendField("Amount:")
+        .appendField(new Blockly.FieldNumber(500, 0), "AMOUNT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+  }
+};
+
+// Define the 'budget_calculator_block'
+Blockly.Blocks['budget_calculator_block'] = {
+  init: function() {
+    this.appendStatementInput("INCOME")
+        .setCheck(null)
+        .appendField("Income");
+    this.appendStatementInput("EXPENSES")
+        .setCheck(null)
+        .appendField("Expenses");
+    this.setColour(60);
+    this.setTooltip("Calculate your budget by subtracting expenses from income.");
+  }
+};
+
+// Define the JavaScript generator for 'income_block'
+Blockly.JavaScript['income_block'] = function(block) {
+  var source = block.getFieldValue('SOURCE');
+  var amount = Number(block.getFieldValue('AMOUNT'));
+  return 'addIncome("' + source + '", ' + amount + ');\n';
+};
+
+// Define the JavaScript generator for 'expense_block'
+Blockly.JavaScript['expense_block'] = function(block) {
+  var category = block.getFieldValue('CATEGORY');
+  var amount = Number(block.getFieldValue('AMOUNT'));
+  return 'addExpense("' + category + '", ' + amount + ');\n';
+};
+
+// Define the JavaScript generator for 'budget_calculator_block'
+Blockly.JavaScript['budget_calculator_block'] = function(block) {
+  var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOME');
+  var expenseCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
+  return 'calculateBudget();\n';
+};
+
+// Supporting Functions with UI Updates
+let totalIncome = 0;
+let totalExpenses = 0;
+
+function addIncome(source, amount) {
+  totalIncome += amount;
+  updateIncomeDisplay(); // Update the income display on the UI
+}
+
+function addExpense(category, amount) {
+  totalExpenses += amount;
+  updateExpenseDisplay(); // Update the expense display on the UI
+}
+
+function calculateBudget() {
+  let netBudget = totalIncome - totalExpenses;
+  updateBudgetDisplay(netBudget); // Update the budget display on the UI
+}
+
+// Additional UI Update Functions
+function updateIncomeDisplay() {
+  document.getElementById('incomeDisplay').textContent = `Total Income: ${totalIncome}`;
+}
+
+function updateExpenseDisplay() {
+  document.getElementById('expenseDisplay').textContent = `Total Expenses: ${totalExpenses}`;
+}
+
+function updateBudgetDisplay(netBudget) {
+  document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
+}
+
+
+/*
 // Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
@@ -96,3 +192,4 @@ Blockly.JavaScript['input_number'] = function(block) {
   var number = block.getFieldValue('NUM');
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
 };
+*/

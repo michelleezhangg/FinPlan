@@ -80,22 +80,27 @@ Blockly.Blocks['income_source'] = {
     return [budget, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  // Input Number Block
-  Blockly.Blocks['input_number'] = {
-    init: function() {
-      this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
-      this.setColour(Blockly.Msg.MATH_HUE);
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldNumber(0), 'NUM');
-      this.setOutput(true, 'Number');
-      this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
-    }
-  };
-  
-  Blockly.JavaScript['input_number'] = function(block) {
-    var number = block.getFieldValue('NUM');
-    return [number, Blockly.JavaScript.ORDER_ATOMIC];
-  };
+// Input Number Block
+// Blockly.Blocks['input_number'] = {
+//   init: function() {
+//     this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
+//     this.setColour(Blockly.Msg.MATH_HUE);
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldNumber(0), 'NUM');
+//     this.setOutput(true, 'Number');
+//     this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
+//   }
+// };
+
+Blockly.JavaScript['input_number'] = function(block) {
+  var number = block.getFieldValue('NUM');
+  if (number < 0) {
+    console.error("Error: Negative value not allowed"); // Print an error message to the console
+    // Return an error value or use NaN if you prefer
+    return ["Error", Blockly.JavaScript.ORDER_ATOMIC];
+  }
+  return [number, Blockly.JavaScript.ORDER_ATOMIC];
+};
   
   // Added functionality for 'Goal Months' block 
   // This block calculates how many months it would take to reach a certain amount in Savings given 
