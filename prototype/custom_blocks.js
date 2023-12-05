@@ -81,16 +81,16 @@ Blockly.Blocks['income_source'] = {
   };
   
 // Input Number Block
-Blockly.Blocks['input_number'] = {
-  init: function() {
-    this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
-    this.setColour(Blockly.Msg.MATH_HUE);
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldNumber(0), 'NUM');
-    this.setOutput(true, 'Number');
-    this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
-  }
-};
+// Blockly.Blocks['input_number'] = {
+//   init: function() {
+//     this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
+//     this.setColour(Blockly.Msg.MATH_HUE);
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldNumber(0), 'NUM');
+//     this.setOutput(true, 'Number');
+//     this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
+//   }
+// };
 
 Blockly.JavaScript['input_number'] = function(block) {
   var number = block.getFieldValue('NUM');
