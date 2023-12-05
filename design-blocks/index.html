@@ -129,20 +129,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Financial Blockly App</title>
+    <title>Financial Planning with Blockly</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <script src="custom_blocks.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="custom_blocks.js"></script> <!-- From first file -->
+    <script src="budget_blocks.js"></script> <!-- From second file -->
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- From first file -->
 </head>
 <body>
     <div class="row">
-        <div id="blocklyDiv" class="full-width"></div>
+        <div id="blocklyDiv" class="full-width" style="height: 480px; width: 600px;"></div>
         <xml id="toolbox" style="display: none">
-           <!--  <block type="income_source"></block>
+            <block type="income_source"></block>
             <block type="expense"></block>
             <block type="savings"></block>
             <block type="budget"></block>
-            <block type="input_number"></block> Add the input_number block -->
+            <block type="input_number"></block> <!-- Add the input_number block -->
             <block type="income_block"></block>
             <block type="expense_block"></block>
             <block type="budget_calculator_block"></block>
@@ -218,7 +219,6 @@
                 Blockly.Xml.appendDomToWorkspace(xml, workspace);
             };
             reader.readAsText(file);
-        }
     </script>
 </body>
 </html>
