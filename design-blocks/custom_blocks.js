@@ -95,7 +95,6 @@ function updateBudgetDisplay(netBudget) {
 
 
 
-// Income Source Block
 
 // Income Source Block
 Blockly.Blocks['income_source'] = {
