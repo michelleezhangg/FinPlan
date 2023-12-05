@@ -1,4 +1,3 @@
-
 // Income Source Block
 Blockly.Blocks['income_source'] = {
     init: function() {
@@ -101,7 +100,7 @@ Blockly.JavaScript['input_number'] = function(block) {
   }
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
 };
-  
+/*  
 // Added functionality for 'Goal Months' block 
 // This block calculates how many months it would take to reach a certain amount in Savings given 
 // how much you are saving per month. 
@@ -129,4 +128,4 @@ Blockly.JavaScript['goal_months'] = function(block) {
     var code = '(' + goalAmount + ' / ' + savingsPerMonth + ')';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   }
-};
+};*/
