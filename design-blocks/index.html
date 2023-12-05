@@ -58,6 +58,23 @@
         <div id="codeDiv" class="half-width"></div>
         <div id="outputDiv" class="half-width"></div>
     </div>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <div id="financialSummary">
+        <p id="incomeDisplay">Total Income: 0</p>
+        <p id="expenseDisplay">Total Expenses: 0</p>
+        <p id="budgetDisplay">Net Budget: 0</p>
+    </div>
+
+    <script>
+        var workspace = Blockly.inject('blocklyDiv',
+            {toolbox: document.getElementById('toolbox')});
+    </script>
+
+    <xml id="toolbox" style="display: none">
+        <block type="income_block"></block>
+        <block type="expense_block"></block>
+        <block type="budget_calculator_block"></block>
+    </xml>
     <script>
         var workspace = Blockly.inject('blocklyDiv', {
             toolbox: document.getElementById('toolbox'),
