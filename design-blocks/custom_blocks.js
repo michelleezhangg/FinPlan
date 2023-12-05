@@ -93,7 +93,7 @@ function updateBudgetDisplay(netBudget) {
   document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
 }*/
 
-
+/*
 // Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
@@ -190,4 +190,4 @@ Blockly.Blocks['input_number'] = {
 Blockly.JavaScript['input_number'] = function(block) {
   var number = block.getFieldValue('NUM');
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
-};
+};*/
