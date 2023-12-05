@@ -3,11 +3,12 @@
 <head>
     <title>Financial Planning with Blockly</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <script src="custom_blocks.js"></script> <!-- From first file -->
-    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- From first file -->
+    <script src="custom_blocks.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="row">
+        <div id="blocklyDiv" class="full-width" style="height: 480px; width: 600px;"></div>
         <xml id="toolbox" style="display: none">
             <block type="income_source"></block>
             <block type="expense"></block>
