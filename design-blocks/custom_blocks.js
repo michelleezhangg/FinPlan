@@ -1,4 +1,4 @@
-/*// Define the 'income_block'
+// Define the 'income_block'
 Blockly.Blocks['income_block'] = {
   init: function() {
     this.appendDummyInput()
@@ -91,7 +91,7 @@ function updateExpenseDisplay() {
 
 function updateBudgetDisplay(netBudget) {
   document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
-}*/
+}
 
 
 // Income Source Block
