@@ -96,6 +96,8 @@ function updateBudgetDisplay(netBudget) {
 
 
 // Income Source Block
+
+// Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
     this.appendValueInput("AMOUNT")
@@ -192,4 +194,3 @@ Blockly.JavaScript['input_number'] = function(block) {
   var number = block.getFieldValue('NUM');
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
 };
-
