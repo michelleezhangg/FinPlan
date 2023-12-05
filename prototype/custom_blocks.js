@@ -101,32 +101,32 @@ Blockly.JavaScript['input_number'] = function(block) {
   }
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
 };
- /* 
-  // Added functionality for 'Goal Months' block 
-  // This block calculates how many months it would take to reach a certain amount in Savings given 
-  // how much you are saving per month. 
-  Blockly.Blocks['goal_months'] = {
-    init: function() {
-      this.appendValueInput("SAVINGS_PER_MONTH")
-          .setCheck("Number")
-          .appendField("Savings per month");
-      this.appendValueInput("GOAL_AMOUNT")
-          .setCheck("Number")
-          .appendField("Goal savings amount");
-      this.setOutput(true, "Number");
-      this.setColour(160);
-      this.setTooltip("Calculates the months to reach the goal savings amount.");
-      this.setHelpUrl("");
-    }
-  };
   
-  Blockly.JavaScript['goal_months'] = function(block) {
-    var savingsPerMonth = Blockly.JavaScript.valueToCode(block, 'SAVINGS_PER_MONTH', Blockly.JavaScript.ORDER_NONE);
-    var goalAmount = Blockly.JavaScript.valueToCode(block, 'GOAL_AMOUNT', Blockly.JavaScript.ORDER_NONE);
-    if (savingsPerMonth === '0') {
-      return ['"Cannot calculate months with zero savings per month"', Blockly.JavaScript.ORDER_ATOMIC];
-    } else {
-      var code = '(' + goalAmount + ' / ' + savingsPerMonth + ')';
-      return [code, Blockly.JavaScript.ORDER_ATOMIC];
-    }
-  };*/
+// Added functionality for 'Goal Months' block 
+// This block calculates how many months it would take to reach a certain amount in Savings given 
+// how much you are saving per month. 
+Blockly.Blocks['goal_months'] = {
+  init: function() {
+    this.appendValueInput("SAVINGS_PER_MONTH")
+        .setCheck("Number")
+        .appendField("Savings per month");
+    this.appendValueInput("GOAL_AMOUNT")
+        .setCheck("Number")
+        .appendField("Goal savings amount");
+    this.setOutput(true, "Number");
+    this.setColour(160);
+    this.setTooltip("Calculates the months to reach the goal savings amount.");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['goal_months'] = function(block) {
+  var savingsPerMonth = Blockly.JavaScript.valueToCode(block, 'SAVINGS_PER_MONTH', Blockly.JavaScript.ORDER_NONE);
+  var goalAmount = Blockly.JavaScript.valueToCode(block, 'GOAL_AMOUNT', Blockly.JavaScript.ORDER_NONE);
+  if (savingsPerMonth === '0') {
+    return ['"Cannot calculate months with zero savings per month"', Blockly.JavaScript.ORDER_ATOMIC];
+  } else {
+    var code = '(' + goalAmount + ' / ' + savingsPerMonth + ')';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  }
+};
