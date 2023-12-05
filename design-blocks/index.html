@@ -6,11 +6,15 @@
     <script src="budget_blocks.js"></script>
 </head>
 <body>
-    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-    <div id="financialSummary">
-        <p id="incomeDisplay">Total Income: 0</p>
-        <p id="expenseDisplay">Total Expenses: 0</p>
-        <p id="budgetDisplay">Net Budget: 0</p>
+    <div class="row">
+        <div id="blocklyDiv" class="full-width"></div>
+        <xml id="toolbox" style="display: none">
+            <div id="financialSummary">
+                <p id="incomeDisplay">Total Income: 0</p>
+                <p id="expenseDisplay">Total Expenses: 0</p>
+                <p id="budgetDisplay">Net Budget: 0</p>
+            </div>
+        </xml>
     </div>
 
     <script>
