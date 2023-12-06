@@ -303,3 +303,81 @@ function simulateInvestment(allocation, years) {
 function compoundInterest(principal, annualRate, years) {
   return principal * Math.pow((1 + annualRate), years);
 }
+
+
+// financial literacy
+Blockly.Blocks['financial_terms_glossary_block'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Financial Term:")
+        .appendField(new Blockly.FieldTextInput("Interest Rate"), "TERM");
+    this.setColour(120);
+    this.setTooltip("Lookup a financial term.");
+    this.setOutput(true, "String");
+  }
+};
+
+Blockly.JavaScript['financial_terms_glossary_block'] = function(block) {
+  var term = block.getFieldValue('TERM');
+  var definition = lookUpFinancialTerm(term);
+  return [`"${definition}"`, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+// Supporting JavaScript function
+async function lookUpFinancialTerm(term) {
+  const apiUrl = `https://example-financial-glossary-api.com/terms?query=${encodeURIComponent(term)}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    
+    // Assuming the API returns an object with a 'definition' field
+    return data.definition || "Definition not found.";
+  } catch (error) {
+    console.error("Error fetching term definition:", error);
+    return "Error fetching definition.";
+  }
+}
+
+Blockly.Blocks['scenario_based_learning_block'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Financial Scenario:")
+        .appendField(new Blockly.FieldDropdown([["Buying a House", "BUY_HOUSE"], ["Planning for Retirement", "RETIREMENT"]]), "SCENARIO");
+    this.setColour(180);
+    this.setTooltip("Select a financial scenario to learn about.");
+    this.setOutput(true, "String");
+  }
+};
+
+Blockly.JavaScript['scenario_based_learning_block'] = function(block) {
+  var scenario = block.getFieldValue('SCENARIO');
+  var details = getScenarioDetails(scenario);
+  return [`"${details}"`, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+function getScenarioDetails(scenario) {
+  const scenarios = {
+    "BUY_HOUSE": "Buying a house involves saving for a down payment, understanding mortgage rates, and managing property taxes.",
+    "RETIREMENT": "Planning for retirement includes investment in retirement accounts, understanding of pensions, and long-term healthcare planning.",
+    "SAVING_FOR_COLLEGE": "Saving for college involves understanding 529 plans, educational savings accounts, and scholarships.",
+    "EMERGENCY_FUND": "Building an emergency fund requires setting aside 3-6 months of expenses for unforeseen circumstances.",
+    "INVESTING_IN_STOCKS": "Investing in stocks involves understanding stock markets, diversification, and risk management.",
+  };
+  return scenarios[scenario] || "Scenario details not available.";
+}
+
+function takeQuiz(topic) {
+  const quizScores = {
+    "BASIC_FINANCE": Math.floor(Math.random() * 21) + 80, // Random score between 80 and 100
+    "INVESTING": Math.floor(Math.random() * 21) + 70, // Random score between 70 and 90
+    "RETIREMENT_PLANNING": Math.floor(Math.random() * 21) + 60, // Random score between 60 and 80
+    "SAVING_STRATEGIES": Math.floor(Math.random() * 21) + 75, // Random score between 75 and 95
+    "RISK_MANAGEMENT": Math.floor(Math.random() * 21) + 65, // Random score between 65 and 85
+  };
+
+  return quizScores[topic] || 0;
+}
