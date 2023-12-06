@@ -370,6 +370,23 @@ function getScenarioDetails(scenario) {
   return scenarios[scenario] || "Scenario details not available.";
 }
 
+Blockly.Blocks['quizzes_and_tests_block'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Quiz Topic:")
+        .appendField(new Blockly.FieldDropdown([["Basic Finance", "BASIC_FINANCE"], ["Investing", "INVESTING"]]), "TOPIC");
+    this.setColour(240);
+    this.setTooltip("Take a quiz on a financial topic.");
+    this.setOutput(true, "Number");
+  }
+};
+
+Blockly.JavaScript['quizzes_and_tests_block'] = function(block) {
+  var topic = block.getFieldValue('TOPIC');
+  var score = takeQuiz(topic);
+  return [score.toString(), Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 function takeQuiz(topic) {
   const quizScores = {
     "BASIC_FINANCE": Math.floor(Math.random() * 21) + 80, // Random score between 80 and 100
