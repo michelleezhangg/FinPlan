@@ -94,9 +94,14 @@ Blockly.Blocks['input_number'] = {
 
 Blockly.JavaScript['input_number'] = function(block) {
   var number = block.getFieldValue('NUM');
-  if (number < 0) {
-    console.error("Error: Negative value not allowed"); // Print an error message to the console
-    // Return an error value or use NaN if you prefer
-    return ["Error", Blockly.JavaScript.ORDER_ATOMIC];
-  }
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+// Blockly.JavaScript['input_number'] = function(block) {
+//   var number = block.getFieldValue('NUM');
+//   if (number < 0) {
+//     console.error("Error: Negative value not allowed"); // Print an error message to the console
+//     // Return an error value or use NaN if you prefer
+//     return ["Error", Blockly.JavaScript.ORDER_ATOMIC];
+//   }
+//   return [number, Blockly.JavaScript.ORDER_ATOMIC];
