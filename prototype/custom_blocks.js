@@ -45,19 +45,49 @@ Blockly.JavaScript['income_source'] = function(block) {
 // Expense Block
 Blockly.Blocks['expense'] = {
   init: function() {
+    // Define the dropdown options
+    var dropdownOptions = [
+      ["Rent", "RENT"],
+      ["Utilities", "UTILITIES"],
+      ["Phone Plan", "PHONE_PLAN"],
+      ["Car Payment", "CAR_PAYMENT"],
+      ["Subscriptions", "SUBSCRIPTIONS"],
+      ["Debt", "DEBT"],
+      ["Grocery", "GROCERY"],
+      ["Spending", "SPENDING"],
+      ["Other", "OTHER"]
+    ];
+
+    // Add the dropdown field to the block
+    this.appendDummyInput()
+        .appendField("Expense")
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY");
+
+    // Add the value input for the amount
     this.appendValueInput("AMOUNT")
-        .setCheck("Number")
-        .appendField("Expense");
+        .setCheck("Number");
+
+    // Set the block output to a number
     this.setOutput(true, "Number");
+
+    // Set the block color
     this.setColour(0);
+
+    // Set tooltip and help URL if needed
     this.setTooltip("");
     this.setHelpUrl("");
   }
 };
 
 Blockly.JavaScript['expense'] = function(block) {
+  // Get the selected category from the dropdown
+  var category = block.getFieldValue('CATEGORY');
+  
+  // Get the amount value
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return [amount, Blockly.JavaScript.ORDER_ATOMIC];
+
+  // Generate JavaScript code using the selected category
+  return ['addExpense("' + category + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 // Savings Block
