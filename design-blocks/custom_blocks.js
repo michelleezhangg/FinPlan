@@ -190,7 +190,7 @@ Blockly.Blocks['input_number'] = {
 Blockly.JavaScript['input_number'] = function(block) {
   var number = block.getFieldValue('NUM');
   return [number, Blockly.JavaScript.ORDER_ATOMIC];
-};*/
+};
 
 // Investment Blocks
 Blockly.Blocks['risk_assessment_block'] = {
