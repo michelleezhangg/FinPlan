@@ -6,12 +6,6 @@
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        /* Add this CSS style for the yellow color of the Income Source block */
-        .blocklyBlockWorkspace.blocklyBlockWorkspaceSvg .blocklySelected>.blocklyPath {
-            fill: #FFD700 !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -87,16 +81,4 @@
             document.getElementById('loadInput').click();
         }
 
-        function loadBlocksFile(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var xml = Blockly.utils.xml.textToDom(e.target.result);
-                Blockly.Xml.appendDomToWorkspace(xml, workspace);
-            };
-            reader.readAsText(file);
-        }
-    </script>
-</body>
-
-</html>
+        function loadBlocksFile(event)
