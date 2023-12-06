@@ -33,10 +33,10 @@
         <div id="outputDiv" class="half-width"></div>
     </div>
     <script>
-       /* var workspace = Blockly.inject('blocklyDiv', {
+       var workspace = Blockly.inject('blocklyDiv', {
             toolbox: document.getElementById('toolbox'),
             scrollbars: true
-        });*/
+        });
 
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
