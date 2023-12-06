@@ -2,19 +2,44 @@
 // Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
+    // Define the dropdown options
+    var dropdownOptions = [
+      ["Wages", "WAGES"],
+      ["Investments", "INVESTMENTS"],
+      ["Gifts", "GIFTS"],
+      ["Other", "OTHER"]
+    ];
+
+    // Add the dropdown field to the block
+    this.appendDummyInput()
+        .appendField("Income Source")
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE");
+
+    // Add the value input for the amount
     this.appendValueInput("AMOUNT")
-        .setCheck("Number")
-        .appendField("Income Source");
+        .setCheck("Number");
+
+    // Set the block output to a number
     this.setOutput(true, "Number");
+
+    // Set the block color
     this.setColour(230);
+
+    // Set tooltip and help URL if needed
     this.setTooltip("");
     this.setHelpUrl("");
   }
 };
 
 Blockly.JavaScript['income_source'] = function(block) {
+  // Get the selected source from the dropdown
+  var source = block.getFieldValue('SOURCE');
+  
+  // Get the amount value
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return [amount, Blockly.JavaScript.ORDER_ATOMIC];
+
+  // Generate JavaScript code using the selected source
+  return ['addIncome("' + source + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 // Expense Block
