@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Financial Blockly App</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        /* Add this CSS style for the yellow color of the Income Source block */
+        .blocklyBlockWorkspace.blocklyBlockWorkspaceSvg .blocklySelected>.blocklyPath {
+            fill: #FFD700 !important;
+        }
+    </style>
 </head>
+
 <body>
     <div class="row">
         <div id="blocklyDiv" class="full-width"></div>
@@ -14,7 +22,7 @@
             <block type="expense"></block>
             <block type="savings"></block>
             <block type="budget"></block>
-            <block type="input_number"></block> <!-- Add the input_number block -->
+            <block type="input_number"></block>
         </xml>
     </div>
     <div class="row button-row">
@@ -90,4 +98,5 @@
         }
     </script>
 </body>
+
 </html>
