@@ -306,7 +306,7 @@ function compoundInterest(principal, annualRate, years) {
 
 
 // financial literacy
-/*Blockly.Blocks['financial_terms_glossary_block'] = {
+Blockly.Blocks['financial_terms_glossary_block'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Financial Term:")
@@ -340,7 +340,7 @@ async function lookUpFinancialTerm(term) {
     console.error("Error fetching term definition:", error);
     return "Error fetching definition.";
   }
-}*/
+}
 
 Blockly.Blocks['scenario_based_learning_block'] = {
   init: function() {
