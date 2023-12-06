@@ -14,7 +14,6 @@
             <block type="expense"></block>
             <block type="savings"></block>
             <block type="budget"></block>
-            <block type="goal_months"></block>
             <block type="input_number"></block> <!-- Add the input_number block -->
         </xml>
     </div>
@@ -59,36 +58,13 @@
         function runCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             try {
-                // Evaluate the code to get the budget and goal months if they exist
-                var budgetResult = '';
-                var goalMonthsResult = '';
-                var budgetMatch = code.match(/\(([^()]+ - [^()]+ - [^()]+)\)/);
-                var goalMonthsMatch = code.match(/\(([^()]+)\/([^()]+)\)/);
-                
-                // If budget code is present, evaluate and create the result string
-                if (budgetMatch) {
-                var budget = eval(budgetMatch[0]);
-                budgetResult = 'Budget: ' + budget + '\n';
-                }
-
-                // If goal months code is present, evaluate and create the result string
-                if (goalMonthsMatch) {
-                var goalMonths = eval(goalMonthsMatch[0]);
-                if (!isFinite(goalMonths)) {
-                    goalMonthsResult = 'Cannot calculate months with zero savings per month.\n';
-                } else {
-                    goalMonthsResult = 'Months to Goal Savings Amount: ' + Math.ceil(goalMonths) + '\n';
-                }
-                }
-
-                // Show both the budget and the months to goal savings amount
-                document.getElementById('outputDiv').innerText = goalMonthsResult + budgetResult;
-
+                var output = eval(code);
+                document.getElementById('outputDiv').innerText = output;
             } catch (e) {
                 document.getElementById('outputDiv').innerText = 'Error: ' + e;
             }
         }
-        
+
         function saveBlocks() {
             var xml = Blockly.Xml.workspaceToDom(workspace);
             var xmlText = Blockly.Xml.domToPrettyText(xml);
