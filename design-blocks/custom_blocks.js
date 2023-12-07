@@ -79,7 +79,7 @@ Blockly.JavaScript['income_block'] = function(block) {
   var source = block.getFieldValue('SOURCE');
   //var amount = Number(block.getFieldValue('AMOUNT'));
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return 'addIncome("' + source + '", ' + amount + ')';
+  return 'addIncome("' + source + '", ' + amount + ');\n';
 };
 
 // Define the JavaScript generator for 'expense_block'
@@ -87,20 +87,15 @@ Blockly.JavaScript['expense_block'] = function(block) {
   var category = block.getFieldValue('CATEGORY');
   //var amount = Number(block.getFieldValue('AMOUNT'));
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return 'addExpense("' + category + '", ' + amount + ')';
+  return 'addExpense("' + category + '", ' + amount + ');\n';
 };
 
 // Define the JavaScript generator for 'budget_calculator_block'
-Blockly.JavaScript['budget_calculator_block'] = function (block) {
+Blockly.JavaScript['budget_calculator_block'] = function(block) {
   var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOME');
   var expenseCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
-  var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_NONE);
-
-  // // Calculate netBudget
-  // var netBudget = `(${incomeCode} - ${expenseCode} - ${savings})`;
-
-  // Use backticks for template literals
-  var code = `calculateBudget(${incomeCode}, ${expenseCode}, ${savings})`;
+  // return 'calculateBudget();\n';
+  var code = 'calculateBudget()\n';
   console.log('Generated JavaScript code:', code);  // Add this line for debugging
   return code;
 };
@@ -117,16 +112,10 @@ function addExpense(category, amount) {
   //return totalExpenses;
 }
 
-function calculateBudget(incomeCode, expenseCode, savings) {
-  // Update totalIncome and totalExpenses
-  totalIncome = eval(incomeCode);
-  totalExpenses = eval(expenseCode);
-
-  // Calculate netBudget
-  var netBudget = totalIncome - totalExpenses - eval(savings);
-
-  // Update budget display
-  updateBudgetDisplay(netBudget);
+function calculateBudget() {
+  let netBudget = totalIncome - totalExpenses;
+  updateBudgetDisplay(netBudget); // Update the budget display on the UI
+  //return netBudget;
 }
 
 // Additional UI Update Functions
@@ -141,7 +130,6 @@ function updateExpenseDisplay() {
 function updateBudgetDisplay(netBudget) {
   document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
 }
-
 
 
 // OG Income Source Block
