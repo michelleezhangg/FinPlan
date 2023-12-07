@@ -105,15 +105,8 @@ Blockly.JavaScript['savings'] = function(block) {
 // Budget Block
 Blockly.Blocks['budget'] = {
   init: function() {
-    this.appendValueInput("INCOME")
-        .setCheck("Number")
-        .appendField("Budget - Income");
-    this.appendValueInput("EXPENSES")
-        .setCheck("Number")
-        .appendField("Expenses");
-    this.appendValueInput("SAVINGS")
-        .setCheck("Number")
-        .appendField("Savings");
+    this.appendDummyInput()
+        .appendField("Budget");
     this.setOutput(true, "Number");
     this.setColour(290);
     this.setTooltip("");
@@ -122,10 +115,26 @@ Blockly.Blocks['budget'] = {
 };
 
 Blockly.JavaScript['budget'] = function(block) {
-  var income = Blockly.JavaScript.valueToCode(block, 'INCOME', Blockly.JavaScript.ORDER_NONE);
-  var expenses = Blockly.JavaScript.valueToCode(block, 'EXPENSES', Blockly.JavaScript.ORDER_NONE);
-  var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_NONE);
-  var budget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
+  var totalIncome = 0;
+  var totalExpenses = 0;
+  var totalSavings = 0;
+
+  // Iterate over connected blocks and sum values based on their types
+  var connectedBlocks = block.getChildren();
+  connectedBlocks.forEach(function(childBlock) {
+    var type = childBlock.type;
+    var value = Blockly.JavaScript.valueToCode(childBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+
+    if (type === 'income_source') {
+      totalIncome += Number(value);
+    } else if (type === 'expense') {
+      totalExpenses += Number(value);
+    } else if (type === 'savings') {
+      totalSavings += Number(value);
+    }
+  });
+
+  var budget = '(' + totalIncome + ' - ' + totalExpenses + ' - ' + totalSavings + ')';
   return [budget, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
