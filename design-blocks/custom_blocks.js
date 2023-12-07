@@ -52,6 +52,7 @@ Blockly.Blocks['expense_block'] = {
         .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setOutput(true, "Expense");
     this.setColour(160);
   }
 };
@@ -60,13 +61,13 @@ Blockly.Blocks['expense_block'] = {
 Blockly.Blocks['budget_calculator_block'] = {
   init: function() {
     this.appendStatementInput("INCOME")
-        .setCheck("income_block")
+        .setCheck("Income")
         .appendField("Budget - Income");
     this.appendStatementInput("EXPENSES")
-        .setCheck("expense_block")
+        .setCheck("Expense")
         .appendField("Expenses");
     this.appendValueInput("SAVINGS")
-        .setCheck("Number")
+        .setCheck(["Number", "Savings"])
         .appendField("Savings");
     this.setColour(60);
     this.setOutput(true, "Number");
