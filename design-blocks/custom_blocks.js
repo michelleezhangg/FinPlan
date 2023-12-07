@@ -45,7 +45,11 @@ Blockly.Blocks['budget_calculator_block'] = {
     this.appendStatementInput("EXPENSES")
         .setCheck(null)
         .appendField("Expenses");
+    this.appendValueInput("SAVINGS")
+        .setCheck("Number")
+        .appendField("Savings");
     this.setColour(60);
+    this.setOutput(true, "Number");
     this.setTooltip("Calculate your budget by subtracting expenses from income.");
   }
 };
