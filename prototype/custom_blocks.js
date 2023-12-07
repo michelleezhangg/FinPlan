@@ -1,4 +1,3 @@
-
 // Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
@@ -17,7 +16,8 @@ Blockly.Blocks['income_source'] = {
 
     // Add the value input for the amount
     this.appendValueInput("AMOUNT")
-        .setCheck("Number");
+        .setCheck("Number")
+        .appendField("Amount");
 
     // Set the block output to a number
     this.setOutput(true, "Number");
@@ -36,7 +36,7 @@ Blockly.JavaScript['income_source'] = function(block) {
   var source = block.getFieldValue('SOURCE');
   
   // Get the amount value
-  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
+  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
 
   // Generate JavaScript code using the selected source
   return ['addIncome("' + source + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
