@@ -13,7 +13,7 @@ Blockly.Blocks['income_block'] = {
       ["Other", "OTHER"]
     ];
     this.appendDummyInput()
-        .appendField("Budget - Income Source:")
+        .appendField("Income Source:")
         //.appendField(new Blockly.FieldTextInput("Wages"), "SOURCE")
         .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE")
         //.appendField("Amount:")
@@ -61,7 +61,7 @@ Blockly.Blocks['budget_calculator_block'] = {
   init: function() {
     this.appendStatementInput("INCOME")
         .setCheck(null)
-        .appendField("Income");
+        .appendField("Budget - Income");
     this.appendStatementInput("EXPENSES")
         .setCheck(null)
         .appendField("Expenses");
