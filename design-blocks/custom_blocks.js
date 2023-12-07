@@ -190,13 +190,13 @@ Blockly.JavaScript['savings'] = function(block) {
 Blockly.Blocks['budget'] = {
   init: function() {
     this.appendValueInput("INCOME")
-        .setCheck("Number")
+        .setCheck("income")
         .appendField("Budget - Income");
     this.appendValueInput("EXPENSES")
-        .setCheck("Number")
+        .setCheck("expense")
         .appendField("Expenses");
     this.appendValueInput("SAVINGS")
-        .setCheck("Number")
+        .setCheck("savings")
         .appendField("Savings");
     this.setOutput(true, "Number");
     this.setColour(290);
