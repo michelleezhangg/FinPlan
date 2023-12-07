@@ -1,3 +1,4 @@
+
 // Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
@@ -79,8 +80,18 @@ Blockly.JavaScript['expense'] = function(block) {
   var amount = Number(block.getFieldValue('AMOUNT'));
   return 'addExpense("' + category + '", ' + amount + ');\n';
 };
-
-
+// Savings Block
+Blockly.Blocks['savings'] = {
+  init: function() {
+    this.appendValueInput("AMOUNT")
+        .setCheck("Number")
+        .appendField("Savings");
+    this.setOutput(true, "Number");
+    this.setColour(110);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
 
 Blockly.JavaScript['savings'] = function(block) {
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
