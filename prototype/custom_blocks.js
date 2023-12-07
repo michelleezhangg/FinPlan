@@ -81,15 +81,15 @@ Blockly.JavaScript['savings'] = function(block) {
 // Updated Budget Block
 Blockly.Blocks['budget'] = {
   init: function () {
-    this.appendStatementInput("INCOMES")
+    this.appendValueInput("INCOMES")
         .setCheck(null)
         .appendField("Budget - Incomes");
 
-    this.appendStatementInput("EXPENSES")
+    this.appendValueInput("EXPENSES")
         .setCheck(null)
         .appendField("Expenses");
 
-    this.appendStatementInput("SAVINGS")
+    this.appendValueInput("SAVINGS")
         .setCheck(null)
         .appendField("Savings");
 
@@ -100,9 +100,9 @@ Blockly.Blocks['budget'] = {
 };
 
 Blockly.JavaScript['budget'] = function (block) {
-  var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOMES');
-  var expensesCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
-  var savingsCode = Blockly.JavaScript.statementToCode(block, 'SAVINGS');
+  var incomeCode = Blockly.JavaScript.valueToCode(block, 'INCOMES', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var expensesCode = Blockly.JavaScript.valueToCode(block, 'EXPENSES', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  var savingsCode = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_ATOMIC) || '0';
 
   return 'calculateBudget(' + incomeCode + ', ' + expensesCode + ', ' + savingsCode + ');\n';
 };
@@ -157,3 +157,4 @@ function updateSavingsDisplay() {
 function updateBudgetDisplay(netBudget) {
   document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
 }
+
