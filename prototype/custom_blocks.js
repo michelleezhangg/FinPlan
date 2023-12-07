@@ -154,8 +154,11 @@ Blockly.Blocks['budget'] = {
 
 Blockly.JavaScript['budget'] = function (block) {
     // Get the values from the "Amount" fields in the connected "income" and "expense" blocks
-    var income = block.getFieldValue('INCOME') || '0';
-    var expenses = block.getFieldValue('EXPENSES') || '0';
+    var incomeBlock = block.getInputTargetBlock('INCOME');
+    var income = incomeBlock ? Blockly.JavaScript.valueToCode(incomeBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) : '0';
+
+    var expensesBlock = block.getInputTargetBlock('EXPENSES');
+    var expenses = expensesBlock ? Blockly.JavaScript.valueToCode(expensesBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) : '0';
 
     // Get the value from the connected "savings" block
     var savingsBlock = block.getInputTargetBlock('SAVINGS');
