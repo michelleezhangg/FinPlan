@@ -104,49 +104,101 @@ Blockly.JavaScript['savings'] = function(block) {
 
 // Budget Block
 Blockly.Blocks['budget'] = {
-  init: function() {
-    this.appendValueInput("INCOME")
-        .setCheck("Number")
-        .appendField("Budget - Income");
+    init: function () {
+        this.appendValueInput("INCOME")
+            .setCheck("Number")
+            .appendField("Budget - Income");
 
-    this.appendValueInput("EXPENSES")
-        .setCheck("Number")
-        .appendField("Expenses");
+        this.appendValueInput("EXPENSES")
+            .setCheck("Number")
+            .appendField("Expenses");
 
-    this.appendValueInput("SAVINGS")
-        .setCheck("Number")
-        .appendField("Savings");
+        this.appendValueInput("SAVINGS")
+            .setCheck("Number")
+            .appendField("Savings");
 
-    this.setOutput(true, "Number");
-    this.setColour(290);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
+        this.setOutput(true, "Number");
+        this.setColour(290);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    },
+    mutationToDom: function () {
+        var container = document.createElement('mutation');
+        var inputCount = this.inputList.length - 3; // Subtract the initial three inputs
+        container.setAttribute('inputs', inputCount);
+        return container;
+    },
+    domToMutation: function (xmlElement) {
+        var inputCount = parseInt(xmlElement.getAttribute('inputs'), 10);
+        for (var i = 0; i < inputCount; i++) {
+            this.appendValueInput('AMOUNT' + i)
+                .setCheck("Number")
+                .appendField("Amount");
+        }
+    },
+    decompose: function (workspace) {
+        var containerBlock = workspace.newBlock('budget_container');
+        containerBlock.initSvg();
+        var connection = containerBlock.getInput('STACK').connection;
+
+        for (var i = 3; i < this.inputList.length; i++) {
+            var inputBlock = workspace.newBlock('budget_amount');
+            inputBlock.initSvg();
+            connection.connect(inputBlock.previousConnection);
+            connection = inputBlock.nextConnection;
+        }
+
+        return containerBlock;
+    }
 };
 
 Blockly.JavaScript['budget'] = function (block) {
-    var income = Blockly.JavaScript.valueToCode(block, 'INCOME', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-    var expenses = Blockly.JavaScript.valueToCode(block, 'EXPENSES', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-    var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    var inputCount = block.inputList.length - 3; // Subtract the initial three inputs
+    var code = [];
+    var values = [];
 
-    // Iterate over connected blocks and sum values based on their types
-    var connectedBlocks = block.getChildren();
-    connectedBlocks.forEach(function (childBlock) {
-        var type = childBlock.type;
-        var value = Blockly.JavaScript.valueToCode(childBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    for (var i = 0; i < inputCount; i++) {
+        values.push(Blockly.JavaScript.valueToCode(block, 'AMOUNT' + i, Blockly.JavaScript.ORDER_ATOMIC) || '0');
+    }
 
-        if (type === 'income_source') {
-            income += '+' + value; // Change here to use '+' for addition
-        } else if (type === 'expense') {
-            expenses += '+' + value; // Change here to use '+' for addition
-        } else if (type === 'savings') {
-            savings += '+' + value; // Change here to use '+' for addition
-        }
-    });
+    var income = values[0] || '0';
+    var expenses = values[1] || '0';
+    var savings = values[2] || '0';
 
     var budget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
     return [budget, Blockly.JavaScript.ORDER_ATOMIC];
 };
+
+// Container for dynamic input blocks
+Blockly.Blocks['budget_container'] = {
+    init: function () {
+        this.setColour(290);
+        this.appendDummyInput()
+            .appendField("Budget - Income");
+        this.appendStatementInput('STACK');
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+// Dynamic input block for amounts
+Blockly.Blocks['budget_amount'] = {
+    init: function () {
+        this.setColour(290);
+        this.appendDummyInput()
+            .appendField("Amount")
+            .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
+        this.setOutput(true, 'Number');
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['budget_amount'] = function (block) {
+    var amount = block.getFieldValue('AMOUNT');
+    return [amount, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 
 
 // Input Number Block
