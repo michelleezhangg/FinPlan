@@ -5,9 +5,17 @@ let totalExpenses = 0;
 // Define the vertical stacking 'income_block'
 Blockly.Blocks['income_block'] = {
   init: function() {
+    // Define the dropdown options
+    var dropdownOptions = [
+      ["Wages", "WAGES"],
+      ["Investments", "INVESTMENTS"],
+      ["Gifts", "GIFTS"],
+      ["Other", "OTHER"]
+    ];
     this.appendDummyInput()
-        .appendField("Income Source:")
-        .appendField(new Blockly.FieldTextInput("Salary"), "SOURCE")
+        .appendField("Budget - Income Source:")
+        //.appendField(new Blockly.FieldTextInput("Wages"), "SOURCE")
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE")
         //.appendField("Amount:")
         //.appendField(new Blockly.FieldNumber(1000, 0), "AMOUNT");
     this.appendValueInput("AMOUNT")
@@ -22,9 +30,21 @@ Blockly.Blocks['income_block'] = {
 // Define the vertical stacking 'expense_block'
 Blockly.Blocks['expense_block'] = {
   init: function() {
+    var dropdownOptions = [
+      ["Rent", "RENT"],
+      ["Utilities", "UTILITIES"],
+      ["Phone Plan", "PHONE_PLAN"],
+      ["Car Payment", "CAR_PAYMENT"],
+      ["Subscriptions", "SUBSCRIPTIONS"],
+      ["Debt", "DEBT"],
+      ["Grocery", "GROCERY"],
+      ["Spending", "SPENDING"],
+      ["Other", "OTHER"]
+    ];
     this.appendDummyInput()
         .appendField("Expense Category:")
-        .appendField(new Blockly.FieldTextInput("Rent"), "CATEGORY")
+        //.appendField(new Blockly.FieldTextInput("Rent"), "CATEGORY")
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY")
         //.appendField("Amount:")
         //.appendField(new Blockly.FieldNumber(500, 0), "AMOUNT");
     this.appendValueInput("AMOUNT")
