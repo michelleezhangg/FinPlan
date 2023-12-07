@@ -65,11 +65,9 @@ Blockly.Blocks['expense'] = {
         .appendField("Amount")
         .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
 
-    // Connect to previous and next blocks
-    // Connect to previous and next blocks on both sides
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setInputsInline(true);
+    // Set the block output to a number
+    this.setOutput(true, "Number");
+    //this.setInputsInline(true);
 
     this.setColour(0);
     this.setTooltip("");
