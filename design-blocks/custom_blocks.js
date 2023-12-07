@@ -1,4 +1,4 @@
-// Define the 'income_block'
+// Define the vertical stacking 'income_block'
 Blockly.Blocks['income_block'] = {
   init: function() {
     this.appendDummyInput()
@@ -12,7 +12,7 @@ Blockly.Blocks['income_block'] = {
   }
 };
 
-// Define the 'expense_block'
+// Define the vertical stacking 'expense_block'
 Blockly.Blocks['expense_block'] = {
   init: function() {
     this.appendDummyInput()
@@ -26,7 +26,7 @@ Blockly.Blocks['expense_block'] = {
   }
 };
 
-// Define the 'budget_calculator_block'
+// Define the vertical stacking 'budget_calculator_block'
 Blockly.Blocks['budget_calculator_block'] = {
   init: function() {
     this.appendStatementInput("INCOME")
@@ -94,7 +94,7 @@ function updateBudgetDisplay(netBudget) {
 }
 
 
-// Income Source Block
+// OG Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
     this.appendValueInput("AMOUNT")
@@ -112,7 +112,7 @@ Blockly.JavaScript['income_source'] = function(block) {
   return [amount, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-// Expense Block
+// OG Expense Block
 Blockly.Blocks['expense'] = {
   init: function() {
     this.appendValueInput("AMOUNT")
@@ -130,7 +130,7 @@ Blockly.JavaScript['expense'] = function(block) {
   return [amount, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-// Savings Block
+// OG Savings Block
 Blockly.Blocks['savings'] = {
   init: function() {
     this.appendValueInput("AMOUNT")
@@ -148,7 +148,7 @@ Blockly.JavaScript['savings'] = function(block) {
   return [amount, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-// Budget Block
+// OG Budget Block
 Blockly.Blocks['budget'] = {
   init: function() {
     this.appendValueInput("INCOME")
