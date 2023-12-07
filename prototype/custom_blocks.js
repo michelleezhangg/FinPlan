@@ -1,7 +1,6 @@
-// Income Source Block
+// Updated Income Source Block
 Blockly.Blocks['income_source'] = {
   init: function() {
-    // Define the dropdown options
     var dropdownOptions = [
       ["Wages", "WAGES"],
       ["Investments", "INVESTMENTS"],
@@ -9,44 +8,27 @@ Blockly.Blocks['income_source'] = {
       ["Other", "OTHER"]
     ];
 
-    // Add the dropdown field to the block
     this.appendDummyInput()
         .appendField("Income")
         .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE")
-        .appendField("Amount")
-        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
+        .appendField("Amount");
 
-    // Add the value input for the amount
-    this.appendValueInput("AMOUNT")
-        .setCheck("Number");
-
-    // Set the block output to a number
     this.setOutput(true, "Number");
-
-    // Set the block color
     this.setColour(230);
-
-    // Set tooltip and help URL if needed
     this.setTooltip("");
     this.setHelpUrl("");
   }
 };
 
 Blockly.JavaScript['income_source'] = function(block) {
-  // Get the selected source from the dropdown
   var source = block.getFieldValue('SOURCE');
-  
-  // Get the amount value
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-
-  // Generate JavaScript code using the selected source
   return ['addIncome("' + source + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-// Expense Block
+// Updated Expense Block
 Blockly.Blocks['expense'] = {
   init: function() {
-    // Define the dropdown options
     var dropdownOptions = [
       ["Rent", "RENT"],
       ["Utilities", "UTILITIES"],
@@ -59,20 +41,12 @@ Blockly.Blocks['expense'] = {
       ["Other", "OTHER"]
     ];
 
-    // Add the dropdown field to the block
     this.appendDummyInput()
         .appendField("Expense")
         .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY")
-        .appendField("Amount")
-        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
-    
-    // Add the value input for the amount
-    this.appendValueInput("AMOUNT")
-        .setCheck("Number");
+        .appendField("Amount");
 
-    // Set the block output to a number
     this.setOutput(true, "Number");
-
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -81,15 +55,17 @@ Blockly.Blocks['expense'] = {
 
 Blockly.JavaScript['expense'] = function(block) {
   var category = block.getFieldValue('CATEGORY');
-  var amount = Number(block.getFieldValue('AMOUNT'));
-  return 'addExpense("' + category + '", ' + amount + ');\n';
+  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  return ['addExpense("' + category + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
 };
-// Savings Block
+
+// Updated Savings Block
 Blockly.Blocks['savings'] = {
   init: function() {
-    this.appendValueInput("AMOUNT")
-        .setCheck("Number")
-        .appendField("Savings");
+    this.appendDummyInput()
+        .appendField("Savings")
+        .appendField("Amount");
+
     this.setOutput(true, "Number");
     this.setColour(110);
     this.setTooltip("");
@@ -98,140 +74,86 @@ Blockly.Blocks['savings'] = {
 };
 
 Blockly.JavaScript['savings'] = function(block) {
-  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return [amount, Blockly.JavaScript.ORDER_ATOMIC];
+  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+  return ['addSavings(' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-// Budget Block
+// Updated Budget Block
 Blockly.Blocks['budget'] = {
-    init: function () {
-        this.appendValueInput("INCOME")
-            .setCheck("Number")
-            .appendField("Budget - Income");
+  init: function () {
+    this.appendStatementInput("INCOMES")
+        .setCheck(null)
+        .appendField("Budget - Incomes");
 
-        this.appendValueInput("EXPENSES")
-            .setCheck("Number")
-            .appendField("Expenses");
+    this.appendStatementInput("EXPENSES")
+        .setCheck(null)
+        .appendField("Expenses");
 
-        this.appendValueInput("SAVINGS")
-            .setCheck("Number")
-            .appendField("Savings");
+    this.appendStatementInput("SAVINGS")
+        .setCheck(null)
+        .appendField("Savings");
 
-        this.setOutput(true, "Number");
-        this.setColour(290);
-        this.setTooltip("");
-        this.setHelpUrl("");
-    },
-    mutationToDom: function () {
-        var container = document.createElement('mutation');
-        var inputCount = this.inputList.length - 3; // Subtract the initial three inputs
-        container.setAttribute('inputs', inputCount);
-        return container;
-    },
-    domToMutation: function (xmlElement) {
-        var inputCount = parseInt(xmlElement.getAttribute('inputs'), 10);
-        for (var i = 0; i < inputCount; i++) {
-            this.appendValueInput('AMOUNT' + i)
-                .setCheck("Number")
-                .appendField("Amount");
-        }
-    },
-    decompose: function (workspace) {
-        var containerBlock = workspace.newBlock('budget_container');
-        containerBlock.initSvg();
-        var connection = containerBlock.getInput('STACK').connection;
-
-        for (var i = 3; i < this.inputList.length; i++) {
-            var inputBlock = workspace.newBlock('budget_amount');
-            inputBlock.initSvg();
-            connection.connect(inputBlock.previousConnection);
-            connection = inputBlock.nextConnection;
-        }
-
-        return containerBlock;
-    }
-};
-
-Blockly.JavaScript['budget'] = function (block) {
-    // Get the values from the "Amount" fields in the connected "income" and "expense" blocks
-    var incomeBlock = block.getInputTargetBlock('INCOME');
-    var income = incomeBlock ? Blockly.JavaScript.valueToCode(incomeBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) : '0';
-
-    var expensesBlock = block.getInputTargetBlock('EXPENSES');
-    var expenses = expensesBlock ? Blockly.JavaScript.valueToCode(expensesBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) : '0';
-
-    // Get the value from the connected "savings" block
-    var savingsBlock = block.getInputTargetBlock('SAVINGS');
-    var savings = Blockly.JavaScript.valueToCode(savingsBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-
-    // Create the budget formula
-    var budget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
-    return [budget, Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-
-// Container for dynamic input blocks
-Blockly.Blocks['budget_container'] = {
-    init: function () {
-        this.setColour(290);
-        this.appendDummyInput()
-            .appendField("Budget - Income");
-        this.appendStatementInput('STACK');
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
-
-// Dynamic input block for amounts
-Blockly.Blocks['budget_amount'] = {
-    init: function () {
-        this.setColour(290);
-        this.appendDummyInput()
-            .appendField("Amount")
-            .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
-        this.setOutput(true, 'Number');
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
-
-Blockly.JavaScript['budget_amount'] = function (block) {
-    var amount = block.getFieldValue('AMOUNT');
-    return [amount, Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-// Example functions (replace with your actual functions)
-function addIncome(source, amount) {
-  amount = Number(amount); // Ensure it's treated as a number
-  console.log('Adding income:', source, amount);
-  // Your logic for adding income...
-}
-
-function addExpense(category, amount) {
-  amount = Number(amount); // Ensure it's treated as a number
-  console.log('Adding expense:', category, amount);
-  // Your logic for adding expense...
-}
-
-function addSavings(amount) {
-  amount = Number(amount); // Ensure it's treated as a number
-  console.log('Adding savings:', amount);
-  // Your logic for adding savings...
-}
-
-// Input Number Block
-Blockly.Blocks['input_number'] = {
-  init: function() {
-    this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
-    this.setColour(Blockly.Msg.MATH_HUE);
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldNumber(0), 'NUM');
-    this.setOutput(true, 'Number');
-    this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
-Blockly.JavaScript['input_number'] = function(block) {
-  var number = block.getFieldValue('NUM');
-  return [number, Blockly.JavaScript.ORDER_ATOMIC];
+Blockly.JavaScript['budget'] = function (block) {
+  var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOMES');
+  var expensesCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
+  var savingsCode = Blockly.JavaScript.statementToCode(block, 'SAVINGS');
+
+  return 'calculateBudget(' + incomeCode + ', ' + expensesCode + ', ' + savingsCode + ');\n';
 };
+
+// Supporting Functions with UI Updates
+let totalIncome = 0;
+let totalExpenses = 0;
+let totalSavings = 0;
+
+function addIncome(source, amount) {
+  totalIncome += amount;
+  updateIncomeDisplay(); // Update the income display on the UI
+}
+
+function addExpense(category, amount) {
+  totalExpenses += amount;
+  updateExpenseDisplay(); // Update the expense display on the UI
+}
+
+function addSavings(amount) {
+  totalSavings += amount;
+  updateSavingsDisplay(); // Update the savings display on the UI
+}
+
+function calculateBudget(incomesCode, expensesCode, savingsCode) {
+  // Calculate total income
+  eval(incomesCode);
+
+  // Calculate total expenses
+  eval(expensesCode);
+
+  // Calculate total savings
+  eval(savingsCode);
+
+  let netBudget = totalIncome - totalExpenses - totalSavings;
+  updateBudgetDisplay(netBudget); // Update the budget display on the UI
+}
+
+// Additional UI Update Functions
+function updateIncomeDisplay() {
+  document.getElementById('incomeDisplay').textContent = `Total Income: ${totalIncome}`;
+}
+
+function updateExpenseDisplay() {
+  document.getElementById('expenseDisplay').textContent = `Total Expenses: ${totalExpenses}`;
+}
+
+function updateSavingsDisplay() {
+  document.getElementById('savingsDisplay').textContent = `Total Savings: ${totalSavings}`;
+}
+
+function updateBudgetDisplay(netBudget) {
+  document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
+}
