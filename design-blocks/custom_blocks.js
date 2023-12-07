@@ -1,3 +1,7 @@
+// Supporting Functions with UI Updates
+let totalIncome = 0;
+let totalExpenses = 0;
+
 // Define the vertical stacking 'income_block'
 Blockly.Blocks['income_block'] = {
   init: function() {
@@ -5,9 +9,10 @@ Blockly.Blocks['income_block'] = {
         .appendField("Income Source:")
         .appendField(new Blockly.FieldTextInput("Salary"), "SOURCE")
         .appendField("Amount:")
-        .appendField(new Blockly.FieldNumber(1000, 0), "AMOUNT");
+        //.appendField(new Blockly.FieldNumber(1000, 0), "AMOUNT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setOutput(true, "Number");
     this.setColour(230);
   }
 };
@@ -19,9 +24,10 @@ Blockly.Blocks['expense_block'] = {
         .appendField("Expense Category:")
         .appendField(new Blockly.FieldTextInput("Rent"), "CATEGORY")
         .appendField("Amount:")
-        .appendField(new Blockly.FieldNumber(500, 0), "AMOUNT");
+        //.appendField(new Blockly.FieldNumber(500, 0), "AMOUNT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setOutput(true, "Number");
     this.setColour(160);
   }
 };
@@ -43,14 +49,16 @@ Blockly.Blocks['budget_calculator_block'] = {
 // Define the JavaScript generator for 'income_block'
 Blockly.JavaScript['income_block'] = function(block) {
   var source = block.getFieldValue('SOURCE');
-  var amount = Number(block.getFieldValue('AMOUNT'));
+  //var amount = Number(block.getFieldValue('AMOUNT'));
+  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
   return 'addIncome("' + source + '", ' + amount + ');\n';
 };
 
 // Define the JavaScript generator for 'expense_block'
 Blockly.JavaScript['expense_block'] = function(block) {
   var category = block.getFieldValue('CATEGORY');
-  var amount = Number(block.getFieldValue('AMOUNT'));
+  //var amount = Number(block.getFieldValue('AMOUNT'));
+  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
   return 'addExpense("' + category + '", ' + amount + ');\n';
 };
 
@@ -61,12 +69,8 @@ Blockly.JavaScript['budget_calculator_block'] = function(block) {
   return 'calculateBudget();\n';
 };
 
-// Supporting Functions with UI Updates
-let totalIncome = 0;
-let totalExpenses = 0;
-
 function addIncome(source, amount) {
-  totalIncome += amount;
+  totalIncome += amount
   updateIncomeDisplay(); // Update the income display on the UI
 }
 
