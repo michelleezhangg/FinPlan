@@ -8,8 +8,11 @@ Blockly.Blocks['income_block'] = {
     this.appendDummyInput()
         .appendField("Income Source:")
         .appendField(new Blockly.FieldTextInput("Salary"), "SOURCE")
-        .appendField("Amount:")
+        //.appendField("Amount:")
         //.appendField(new Blockly.FieldNumber(1000, 0), "AMOUNT");
+    this.appendValueInput("AMOUNT")
+        .setCheck("Number")
+        .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setOutput(true, "Number");
@@ -23,8 +26,11 @@ Blockly.Blocks['expense_block'] = {
     this.appendDummyInput()
         .appendField("Expense Category:")
         .appendField(new Blockly.FieldTextInput("Rent"), "CATEGORY")
-        .appendField("Amount:")
+        //.appendField("Amount:")
         //.appendField(new Blockly.FieldNumber(500, 0), "AMOUNT");
+    this.appendValueInput("AMOUNT")
+        .setCheck("Number")
+        .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setOutput(true, "Number");
