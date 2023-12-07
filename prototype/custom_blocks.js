@@ -12,12 +12,13 @@ Blockly.Blocks['income_source'] = {
     // Add the dropdown field to the block
     this.appendDummyInput()
         .appendField("Income Source")
-        .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE");
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE")
+        .appendField("Amount")
+        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
 
     // Add the value input for the amount
     this.appendValueInput("AMOUNT")
-        .setCheck("Number")
-        .appendField("Amount");
+        .setCheck("Number");
 
     // Set the block output to a number
     this.setOutput(true, "Number");
