@@ -64,12 +64,13 @@ Blockly.Blocks['expense'] = {
         .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY")
         .appendField("Amount")
         .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
+    
+    // Add the value input for the amount
+    this.appendValueInput("AMOUNT")
+        .setCheck("Number");
 
     // Set the block output to a number
-    // Allow both numbers and statements to be connected
     this.setOutput(true, "Number");
-    this.setPreviousStatement(true, "Number");
-    this.setNextStatement(true, "Number");
 
     this.setColour(0);
     this.setTooltip("");
