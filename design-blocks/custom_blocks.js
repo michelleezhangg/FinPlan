@@ -15,7 +15,6 @@ Blockly.Blocks['income_block'] = {
         .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setOutput(true, "Number");
     this.setColour(230);
   }
 };
@@ -33,7 +32,6 @@ Blockly.Blocks['expense_block'] = {
         .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setOutput(true, "Number");
     this.setColour(160);
   }
 };
