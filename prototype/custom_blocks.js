@@ -124,29 +124,30 @@ Blockly.Blocks['budget'] = {
   }
 };
 
-Blockly.JavaScript['budget'] = function(block) {
-  var income = Blockly.JavaScript.valueToCode(block, 'INCOME', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-  var expenses = Blockly.JavaScript.valueToCode(block, 'EXPENSES', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-  var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+Blockly.JavaScript['budget'] = function (block) {
+    var income = Blockly.JavaScript.valueToCode(block, 'INCOME', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    var expenses = Blockly.JavaScript.valueToCode(block, 'EXPENSES', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_ATOMIC) || '0';
 
-  // Iterate over connected blocks and sum values based on their types
-  var connectedBlocks = block.getChildren();
-  connectedBlocks.forEach(function(childBlock) {
-    var type = childBlock.type;
-    var value = Blockly.JavaScript.valueToCode(childBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    // Iterate over connected blocks and sum values based on their types
+    var connectedBlocks = block.getChildren();
+    connectedBlocks.forEach(function (childBlock) {
+        var type = childBlock.type;
+        var value = Blockly.JavaScript.valueToCode(childBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
 
-    if (type === 'income_source') {
-      income += Number(value);
-    } else if (type === 'expense') {
-      expenses += Number(value);
-    } else if (type === 'savings') {
-      savings += Number(value);
-    }
-  });
+        if (type === 'income_source') {
+            income += '+' + value; // Change here to use '+' for addition
+        } else if (type === 'expense') {
+            expenses += '+' + value; // Change here to use '+' for addition
+        } else if (type === 'savings') {
+            savings += '+' + value; // Change here to use '+' for addition
+        }
+    });
 
-  var budget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
-  return [budget, Blockly.JavaScript.ORDER_ATOMIC];
+    var budget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
+    return [budget, Blockly.JavaScript.ORDER_ATOMIC];
 };
+
 
 // Input Number Block
 Blockly.Blocks['input_number'] = {
