@@ -81,17 +81,23 @@ Blockly.JavaScript['savings'] = function(block) {
 // Updated Budget Block
 Blockly.Blocks['budget'] = {
   init: function () {
-    this.appendValueInput("INCOMES")
-        .setCheck(null)
+    this.appendDummyInput()
         .appendField("Budget - Incomes");
 
-    this.appendValueInput("EXPENSES")
-        .setCheck(null)
+    this.appendValueInput("INCOMES")
+        .setCheck(null);
+
+    this.appendDummyInput()
         .appendField("Expenses");
 
-    this.appendValueInput("SAVINGS")
-        .setCheck(null)
+    this.appendValueInput("EXPENSES")
+        .setCheck(null);
+
+    this.appendDummyInput()
         .appendField("Savings");
+
+    this.appendValueInput("SAVINGS")
+        .setCheck(null);
 
     this.setColour(290);
     this.setTooltip("");
@@ -106,6 +112,7 @@ Blockly.JavaScript['budget'] = function (block) {
 
   return 'calculateBudget(' + incomeCode + ', ' + expensesCode + ', ' + savingsCode + ');\n';
 };
+
 
 // Supporting Functions with UI Updates
 let totalIncome = 0;
