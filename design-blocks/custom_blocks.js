@@ -91,12 +91,12 @@ Blockly.JavaScript['expense_block'] = function(block) {
 };
 
 // Define the JavaScript generator for 'budget_calculator_block'
-Blockly.JavaScript['budget_calculator_block'] = function(block) {
+Blockly.JavaScript['budget_calculator_block'] = function (block) {
   var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOME');
   var expenseCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
   var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_NONE);
-  // return 'calculateBudget();\n';
-  var code = 'calculateBudget(${incomeCode}, ${expenseCode}, ${savings});)\n';
+  // Use backticks for template literals
+  var code = `calculateBudget(${incomeCode}, ${expenseCode}, ${savings});\n`;
   console.log('Generated JavaScript code:', code);  // Add this line for debugging
   return code;
 };
@@ -114,8 +114,7 @@ function addExpense(category, amount) {
 }
 
 function calculateBudget(incomeCode, expenseCode, savings) {
-  totalIncome = eval(incomeCode);
-  totalExpenses = eval(expenseCode);
+  var netBudget = eval(incomeCode) - eval(expenseCode) - eval(savings);
   updateBudgetDisplay(netBudget); // Update the budget display on the UI
   //return netBudget;
 }
@@ -132,6 +131,7 @@ function updateExpenseDisplay() {
 function updateBudgetDisplay(netBudget) {
   document.getElementById('budgetDisplay').textContent = `Net Budget: ${netBudget}`;
 }
+
 
 
 // OG Income Source Block
