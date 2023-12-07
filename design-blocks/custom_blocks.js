@@ -1,88 +1,29 @@
-// Income Source Block
+// Define the 'income_block'
 Blockly.Blocks['income_block'] = {
   init: function() {
-    // Define the dropdown options
-    var dropdownOptions = [
-      ["Wages", "WAGES"],
-      ["Investments", "INVESTMENTS"],
-      ["Gifts", "GIFTS"],
-      ["Other", "OTHER"]
-    ];
-
-    // Add the dropdown field to the block
     this.appendDummyInput()
-        .appendField("Income")
-        .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE")
-        .appendField("Amount")
-        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
-
-    // Add the value input for the amount
-    this.appendValueInput("AMOUNT")
-        .setCheck("Number");
-
-    // Set the block output to a number
-    this.setOutput(true, "Number");
-
-    // Set the block color
+        .appendField("Income Source:")
+        .appendField(new Blockly.FieldTextInput("Salary"), "SOURCE")
+        .appendField("Amount:")
+        .appendField(new Blockly.FieldNumber(1000, 0), "AMOUNT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(230);
-
-    // Set tooltip and help URL if needed
-    this.setTooltip("");
-    this.setHelpUrl("");
   }
 };
 
-Blockly.JavaScript['income_block'] = function(block) {
-  // Get the selected source from the dropdown
-  var source = block.getFieldValue('SOURCE');
-  
-  // Get the amount value
-  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-
-  // Generate JavaScript code using the selected source
-  return ['addIncome("' + source + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-// Expense Block
+// Define the 'expense_block'
 Blockly.Blocks['expense_block'] = {
   init: function() {
-    // Define the dropdown options
-    var dropdownOptions = [
-      ["Rent", "RENT"],
-      ["Utilities", "UTILITIES"],
-      ["Phone Plan", "PHONE_PLAN"],
-      ["Car Payment", "CAR_PAYMENT"],
-      ["Subscriptions", "SUBSCRIPTIONS"],
-      ["Debt", "DEBT"],
-      ["Grocery", "GROCERY"],
-      ["Spending", "SPENDING"],
-      ["Other", "OTHER"]
-    ];
-
-    // Add the dropdown field to the block
     this.appendDummyInput()
-        .appendField("Expense")
-        .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY")
-        .appendField("Amount")
-        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
-    
-    // Add the value input for the amount
-    this.appendValueInput("AMOUNT")
-        .setCheck("Number");
-
-    // Set the block output to a number
-    this.setOutput(true, "Number");
-
-    this.setColour(0);
-    this.setTooltip("");
-    this.setHelpUrl("");
+        .appendField("Expense Category:")
+        .appendField(new Blockly.FieldTextInput("Rent"), "CATEGORY")
+        .appendField("Amount:")
+        .appendField(new Blockly.FieldNumber(500, 0), "AMOUNT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
   }
-};
-
-Blockly.JavaScript['expense_block'] = function(block) {
-  var category = block.getFieldValue('CATEGORY');
-  var amount = Number(block.getFieldValue('AMOUNT'));
-  return 'addExpense("' + category + '", ' + amount + ');\n';
 };
 
 // Define the 'budget_calculator_block'
@@ -99,19 +40,19 @@ Blockly.Blocks['budget_calculator_block'] = {
   }
 };
 
-// // Define the JavaScript generator for 'income_block'
-// Blockly.JavaScript['income_block'] = function(block) {
-//   var source = block.getFieldValue('SOURCE');
-//   var amount = Number(block.getFieldValue('AMOUNT'));
-//   return 'addIncome("' + source + '", ' + amount + ');\n';
-// };
+// Define the JavaScript generator for 'income_block'
+Blockly.JavaScript['income_block'] = function(block) {
+  var source = block.getFieldValue('SOURCE');
+  var amount = Number(block.getFieldValue('AMOUNT'));
+  return 'addIncome("' + source + '", ' + amount + ');\n';
+};
 
-// // Define the JavaScript generator for 'expense_block'
-// Blockly.JavaScript['expense_block'] = function(block) {
-//   var category = block.getFieldValue('CATEGORY');
-//   var amount = Number(block.getFieldValue('AMOUNT'));
-//   return 'addExpense("' + category + '", ' + amount + ');\n';
-// };
+// Define the JavaScript generator for 'expense_block'
+Blockly.JavaScript['expense_block'] = function(block) {
+  var category = block.getFieldValue('CATEGORY');
+  var amount = Number(block.getFieldValue('AMOUNT'));
+  return 'addExpense("' + category + '", ' + amount + ');\n';
+};
 
 // Define the JavaScript generator for 'budget_calculator_block'
 Blockly.JavaScript['budget_calculator_block'] = function(block) {
