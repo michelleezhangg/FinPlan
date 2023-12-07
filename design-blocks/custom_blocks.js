@@ -111,7 +111,7 @@ function addExpense(category, amount) {
 }
 
 function calculateBudget() {
-  let netBudget = totalIncome - totalExpenses;
+  netBudget = totalIncome - totalExpenses;
   updateBudgetDisplay(netBudget); // Update the budget display on the UI
 }
 
