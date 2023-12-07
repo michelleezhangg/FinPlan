@@ -23,6 +23,7 @@ Blockly.Blocks['income_block'] = {
         .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setOutput(true, "Incomes");
     this.setColour(230);
   }
 };
@@ -52,7 +53,7 @@ Blockly.Blocks['expense_block'] = {
         .appendField("Amount:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setOutput(true, "Expense");
+    this.setOutput(true, "Expenses");
     this.setColour(160);
   }
 };
@@ -61,13 +62,13 @@ Blockly.Blocks['expense_block'] = {
 Blockly.Blocks['budget_calculator_block'] = {
   init: function() {
     this.appendStatementInput("INCOME")
-        .setCheck("Income")
+        .setCheck("MultiIncome")
         .appendField("Budget - Income");
     this.appendStatementInput("EXPENSES")
-        .setCheck("Expense")
+        .setCheck("MultiExpenses")
         .appendField("Expenses");
     this.appendValueInput("SAVINGS")
-        .setCheck(["Number", "Savings"])
+        .setCheck(["Number", "Savings", "InvestmentSimulator"])
         .appendField("Savings");
     this.setColour(60);
     this.setOutput(true, "Number");
@@ -286,7 +287,7 @@ Blockly.Blocks['investment_simulator_block'] = {
         .appendField(new Blockly.FieldNumber(10, 1), "YEARS");
     this.setColour(60);
     this.setTooltip("Simulate the growth of your investment over a number of years.");
-    this.setOutput(true, "Number");
+    this.setOutput(true, "InvestmentSimulator");
   }
 };
 
