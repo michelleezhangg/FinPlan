@@ -92,12 +92,17 @@ Blockly.JavaScript['expense_block'] = function(block) {
 
 // Define the JavaScript generator for 'budget_calculator_block'
 Blockly.JavaScript['budget_calculator_block'] = function(block) {
-  var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOME');
-  var expenseCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
-  // return 'calculateBudget();\n';
-  var code = 'calculateBudget();\n';
-  console.log('Generated JavaScript code:', code);  // Add this line for debugging
-  return code;
+  // var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOME');
+  // var expenseCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
+  // // return 'calculateBudget();\n';
+  // var code = 'calculateBudget();\n';
+  // console.log('Generated JavaScript code:', code);  // Add this line for debugging
+  // return code;
+  var income = Blockly.JavaScript.valueToCode(block, 'INCOME', Blockly.JavaScript.ORDER_NONE);
+  var expenses = Blockly.JavaScript.valueToCode(block, 'EXPENSES', Blockly.JavaScript.ORDER_NONE);
+  var savings = Blockly.JavaScript.valueToCode(block, 'SAVINGS', Blockly.JavaScript.ORDER_NONE);
+  var calculatedbudget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
+  return [calculatedbudget, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 function addIncome(source, amount) {
