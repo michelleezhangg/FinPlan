@@ -14,8 +14,6 @@ Blockly.Blocks['income_source'] = {
     this.appendDummyInput()
         .appendField("Income Source")
         .appendField(new Blockly.FieldDropdown(dropdownOptions), "SOURCE");
-        .appendField("Amount")
-        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
 
     // Add the value input for the amount
     this.appendValueInput("AMOUNT")
