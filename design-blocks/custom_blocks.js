@@ -7,7 +7,7 @@ Blockly.Blocks['income_block'] = {
   init: function() {
     // Define the dropdown options
     var dropdownOptions = [
-      ["Wages", "WAGES"],
+      ["Salary", "SALARY"],
       ["Investments", "INVESTMENTS"],
       ["Gifts", "GIFTS"],
       ["Other", "OTHER"]
