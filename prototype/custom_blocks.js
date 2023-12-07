@@ -153,21 +153,19 @@ Blockly.Blocks['budget'] = {
 };
 
 Blockly.JavaScript['budget'] = function (block) {
-    var inputCount = block.inputList.length - 3; // Subtract the initial three inputs
-    var code = [];
-    var values = [];
+    // Get the values from the "Amount" fields in the connected "income" and "expense" blocks
+    var income = block.getFieldValue('INCOME') || '0';
+    var expenses = block.getFieldValue('EXPENSES') || '0';
 
-    for (var i = 0; i < inputCount; i++) {
-        values.push(Blockly.JavaScript.valueToCode(block, 'AMOUNT' + i, Blockly.JavaScript.ORDER_ATOMIC) || '0');
-    }
+    // Get the value from the connected "savings" block
+    var savingsBlock = block.getInputTargetBlock('SAVINGS');
+    var savings = Blockly.JavaScript.valueToCode(savingsBlock, 'AMOUNT', Blockly.JavaScript.ORDER_ATOMIC) || '0';
 
-    var income = values[0] || '0';
-    var expenses = values[1] || '0';
-    var savings = values[2] || '0';
-
+    // Create the budget formula
     var budget = '(' + income + ' - ' + expenses + ' - ' + savings + ')';
     return [budget, Blockly.JavaScript.ORDER_ATOMIC];
 };
+
 
 // Container for dynamic input blocks
 Blockly.Blocks['budget_container'] = {
