@@ -138,7 +138,7 @@ Blockly.Blocks['income_source'] = {
     this.appendValueInput("AMOUNT")
         .setCheck("Number")
         .appendField("Income Source");
-    this.setOutput(true, "Number");
+    this.setOutput(true, "Income");
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -156,7 +156,7 @@ Blockly.Blocks['expense'] = {
     this.appendValueInput("AMOUNT")
         .setCheck("Number")
         .appendField("Expense");
-    this.setOutput(true, "Number");
+    this.setOutput(true, "Expense");
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -174,7 +174,7 @@ Blockly.Blocks['savings'] = {
     this.appendValueInput("AMOUNT")
         .setCheck("Number")
         .appendField("Savings");
-    this.setOutput(true, "Number");
+    this.setOutput(true, "Savings");
     this.setColour(110);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -190,13 +190,13 @@ Blockly.JavaScript['savings'] = function(block) {
 Blockly.Blocks['budget'] = {
   init: function() {
     this.appendValueInput("INCOME")
-        .setCheck("income")
+        .setCheck("Income")
         .appendField("Budget - Income");
     this.appendValueInput("EXPENSES")
-        .setCheck("expense")
+        .setCheck("Expense")
         .appendField("Expenses");
     this.appendValueInput("SAVINGS")
-        .setCheck("savings")
+        .setCheck("Savings")
         .appendField("Savings");
     this.setOutput(true, "Number");
     this.setColour(290);
