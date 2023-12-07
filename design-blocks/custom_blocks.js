@@ -89,10 +89,10 @@ Blockly.JavaScript['expense_block'] = function(block) {
 Blockly.Blocks['budget_calculator_block'] = {
   init: function() {
     this.appendStatementInput("INCOME")
-        .setCheck(null)
+        .setCheck("Income")
         .appendField("Income");
     this.appendStatementInput("EXPENSES")
-        .setCheck(null)
+        .setCheck("Expenses")
         .appendField("Expenses");
     this.setColour(60);
     this.setTooltip("Calculate your budget by subtracting expenses from income.");
