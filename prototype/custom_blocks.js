@@ -34,14 +34,9 @@ Blockly.Blocks['income_source'] = {
 };
 
 Blockly.JavaScript['income_source'] = function(block) {
-  // Get the selected source from the dropdown
-  var source = block.getFieldValue('SOURCE');
-  
-  // Get the amount value
-  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-
-  // Generate JavaScript code using the selected source
-  return ['addIncome("' + source + '", ' + amount + ');\n', Blockly.JavaScript.ORDER_ATOMIC];
+  var category = block.getFieldValue('CATEGORY');
+  var amount = Number(block.getFieldValue('AMOUNT'));
+  return 'addIncome("' + category + '", ' + amount + ');\n';
 };
 
 // Expense Block
