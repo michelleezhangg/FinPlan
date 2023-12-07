@@ -79,7 +79,7 @@ Blockly.JavaScript['income_block'] = function(block) {
   var source = block.getFieldValue('SOURCE');
   //var amount = Number(block.getFieldValue('AMOUNT'));
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return 'addIncome("' + source + '", ' + amount + ');\n';
+  return 'addIncome("' + source + '", ' + amount + ')';
 };
 
 // Define the JavaScript generator for 'expense_block'
@@ -87,7 +87,7 @@ Blockly.JavaScript['expense_block'] = function(block) {
   var category = block.getFieldValue('CATEGORY');
   //var amount = Number(block.getFieldValue('AMOUNT'));
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
-  return 'addExpense("' + category + '", ' + amount + ');\n';
+  return 'addExpense("' + category + '", ' + amount + ')';
 };
 
 // Define the JavaScript generator for 'budget_calculator_block'
