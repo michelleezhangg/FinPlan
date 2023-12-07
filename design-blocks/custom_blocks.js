@@ -95,7 +95,7 @@ Blockly.JavaScript['budget_calculator_block'] = function(block) {
   var incomeCode = Blockly.JavaScript.statementToCode(block, 'INCOME');
   var expenseCode = Blockly.JavaScript.statementToCode(block, 'EXPENSES');
   // return 'calculateBudget();\n';
-  var code = calculateBudget();
+  var code = 'calculateBudget();\n';
   console.log('Generated JavaScript code:', code);  // Add this line for debugging
   return code;
 };
@@ -113,6 +113,7 @@ function addExpense(category, amount) {
 function calculateBudget() {
   netBudget = totalIncome - totalExpenses;
   updateBudgetDisplay(netBudget); // Update the budget display on the UI
+  return netBudget;
 }
 
 // Additional UI Update Functions
