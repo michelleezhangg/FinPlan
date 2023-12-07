@@ -407,3 +407,63 @@ function takeQuiz(topic) {
   return quizScores[topic] || 0;
 }
 
+// Placeholder for exchange rates (replace with actual rates)
+const exchangeRates = {
+  USD_TO_EUR: 0.93,
+  USD_TO_GBP: 0.75,
+  EUR_TO_USD: 1.08,
+  EUR_TO_GBP: 0.86,
+  GBP_TO_USD: 1.26,
+  GBP_TO_EUR: 1.16
+};
+
+// Currency Conversion Block
+Blockly.Blocks['currency_conversion'] = {
+  init: function() {
+    var dropdownOptions = [
+      ["USD to EUR", "USD_TO_EUR"],
+      ["USD to GBP", "USD_TO_GBP"],
+      ["EUR to USD", "EUR_TO_USD"],
+      ["EUR to GBP", "EUR_TO_GBP"],
+      ["GBP to USD", "GBP_TO_USD"],
+      ["GBP to EUR", "GBP_TO_EUR"]
+    ];
+
+    this.appendValueInput("AMOUNT")
+        .setCheck("Number")
+        .appendField("Convert");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "CONVERSION");
+    this.setOutput(true, "Number");
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['currency_conversion'] = function(block) {
+  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
+  var conversionType = block.getFieldValue('CONVERSION');
+  return ['convertCurrency(' + amount + ', "' + conversionType + '");\n', Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+// Conversion Function (replace with actual conversion logic)
+function convertCurrency(amount, conversionType) {
+  // Check if the conversion type is valid
+  if (!(conversionType in exchangeRates)) {
+    console.error('Invalid conversion type:', conversionType);
+    return null;
+  }
+
+  // Get the exchange rate
+  var exchangeRate = exchangeRates[conversionType];
+
+  // Perform the currency conversion
+  var convertedAmount = amount * exchangeRate;
+
+  // Log the result (replace with actual handling logic)
+  console.log('Converted amount:', convertedAmount);
+
+  // Return the converted amount
+  return convertedAmount;
+}
