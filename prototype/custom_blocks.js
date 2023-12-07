@@ -199,7 +199,24 @@ Blockly.JavaScript['budget_amount'] = function (block) {
     return [amount, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+// Example functions (replace with your actual functions)
+function addIncome(source, amount) {
+  amount = Number(amount); // Ensure it's treated as a number
+  console.log('Adding income:', source, amount);
+  // Your logic for adding income...
+}
 
+function addExpense(category, amount) {
+  amount = Number(amount); // Ensure it's treated as a number
+  console.log('Adding expense:', category, amount);
+  // Your logic for adding expense...
+}
+
+function addSavings(amount) {
+  amount = Number(amount); // Ensure it's treated as a number
+  console.log('Adding savings:', amount);
+  // Your logic for adding savings...
+}
 
 // Input Number Block
 Blockly.Blocks['input_number'] = {
