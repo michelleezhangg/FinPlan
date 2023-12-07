@@ -60,19 +60,15 @@ Blockly.Blocks['expense'] = {
     // Add the dropdown field to the block
     this.appendDummyInput()
         .appendField("Expense")
-        .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY");
-
-    // Add the value input for the amount
-    this.appendValueInput("AMOUNT")
-        .setCheck("Number");
+        .appendField(new Blockly.FieldDropdown(dropdownOptions), "CATEGORY")
+        .appendField("Amount")
+        .appendField(new Blockly.FieldNumber(0, 0), "AMOUNT");
 
     // Set the block output to a number
     this.setOutput(true, "Number");
+    //this.setInputsInline(true);
 
-    // Set the block color
     this.setColour(0);
-
-    // Set tooltip and help URL if needed
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -80,9 +76,11 @@ Blockly.Blocks['expense'] = {
 
 Blockly.JavaScript['expense'] = function(block) {
   var category = block.getFieldValue('CATEGORY');
-  var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
+  var amount = Number(block.getFieldValue('AMOUNT'));
   return 'addExpense("' + category + '", ' + amount + ');\n';
 };
+
+
 
 Blockly.JavaScript['savings'] = function(block) {
   var amount = Blockly.JavaScript.valueToCode(block, 'AMOUNT', Blockly.JavaScript.ORDER_NONE);
