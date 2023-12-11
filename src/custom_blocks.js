@@ -462,7 +462,7 @@ Blockly.Blocks['currency_conversion'] = {
     ];
 
     this.appendValueInput("AMOUNT")
-        .setCheck("Number")
+        .setCheck(null)
         .appendField("Convert");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(dropdownOptions), "CONVERSION");
