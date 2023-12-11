@@ -62,10 +62,10 @@ Blockly.Blocks['expense_block'] = {
 Blockly.Blocks['budget_calculator_block'] = {
   init: function() {
     this.appendStatementInput("INCOME")
-        .setCheck("MultiIncome")
+        .setCheck("Incomes")
         .appendField("Budget - Income");
     this.appendStatementInput("EXPENSES")
-        .setCheck("MultiExpenses")
+        .setCheck("Expenses")
         .appendField("Expenses");
     this.appendValueInput("SAVINGS")
         .setCheck(["Number", "Savings", "InvestmentSimulator"])
