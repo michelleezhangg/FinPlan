@@ -76,9 +76,15 @@ The overall goal is to make FinPlan more dynamic and comprehensive for users so 
 
 ### **Briana Craig**
 - Worked on the second video
+- Integrated the API for the conversion block
+- Added drop-downs to the Income and Expense blocks
+- Added functionality to allow multiple Income and Expense blocks to be used
 
 ### **Cece Hagen**
 - Worked on the second video
+- Created base functionality for the budget block
+- Updated HTML to work with our javascript code
+- Overall debugging
 
 ### **Michelle Zhang**
 - Organized the GitHub repository including the README and documentation
