@@ -73,7 +73,7 @@ The overall goal is to make FinPlan more dynamic and comprehensive for users so 
 
 ### **Apoorva Chilukuri**
 - Worked on the first video
-- Created all the financial planning blocks (risk_assessment_block, asset_allocation_block, investment_simulator_block) and respective functions
+- Created all the financial investment blocks (risk_assessment_block, asset_allocation_block, investment_simulator_block) and respective functions
 - Created all the educational blocks (financial_terms_glossary_block, scenario_based_learning_block, quizzes_and_tests_block) and respective functions
 - Helped with overall debugging
 
