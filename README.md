@@ -2,7 +2,7 @@
 
 **Title**: FinPlan
 
-**Blockly link**: [View our project](https://michelleezhangg.github.io/FinPlan/design-blocks/)
+**[Blockly Link](https://michelleezhangg.github.io/FinPlan/src/)**
 
 **Group Members**: Apoorva Chilukuri, Briana Craig, Cece Hagen, Michelle Zhang
 
@@ -13,29 +13,34 @@
 **Relevance to parsing, interpretation, and compilation**: When users input their financial goals and strategies, the system needs to parse that input to understand its structure and meaning. After parsing, the DSL would interpret the user's instructions to assess the feasibility of their financial plans, and offer feedback regarding their decisions. This involves running routines that verify the user's budget, savings, and investment goals. If the DSL offers the ability to produce executable strategies or visual models, then compilation would come into play, converting user-defined financial plans into a form that can be executed or displayed. Thus, the core processes of this project—taking financial plans, analyzing their viability, and possibly producing actionable strategies or visual outputs—are deeply tied to the concepts of parsing, interpretation, and compilation.
 
 New features added:
-1. Budgeting Blocks
-Income Block: Allows users to input their sources of income (salary, investments, etc.).
-Expense Block: Lets users categorize and input their expenses (rent, groceries, utilities, etc.).
-Budget Calculator Block: This block calculates the monthly or annual budget based on income and expenses.
-Expense Tracker Block: For tracking and categorizing daily expenses.
-Savings Goal Block: To set and track savings goals.
+1. **Budgeting Blocks**
 
-2. Investment Strategy Blocks
-Risk Assessment Block: Helps users assess their risk tolerance for investments.
-Asset Allocation Block: To divide investments across different asset classes (stocks, bonds, real estate, etc.).
-Investment Simulator Block: Simulates investment growth based on historical market data.
+    a. **Income Block**: Allows users to input their sources of income (salary, investments, etc.).
+    b. **Expense Block**: Lets users categorize and input their expenses (rent, groceries, utilities, etc.).
+    c. **Budget Calculator Block**: This block calculates the monthly or annual budget based on income and expenses.
+    d. **Expense Tracker Block**: For tracking and categorizing daily expenses.
+    e. **Savings Goal Block**: To set and track savings goals.
 
-3. Savings Plan Blocks
-Savings Calculator Block: Calculates savings over time based on user inputs like amount, interest rate, and time.
-Emergency Fund Planner Block: Helps in planning and setting aside funds for emergencies.
-Goal-Oriented Savings Block: For specific goals like education, travel, etc.
+2. **Investment Strategy Blocks**
 
-4. Financial Education Blocks
-Financial Terms Glossary Block: Explains key financial terms and concepts.
-Scenario-Based Learning Block: Provides real-life financial scenarios for practice.
-Quizzes and Tests Block: To assess financial literacy progress.
+    a. **Risk Assessment Block**: Helps users assess their risk tolerance for investments.
+    b. **Asset Allocation Block**: To divide investments across different asset classes (stocks, bonds, real estate, etc.).
+    c. **Investment Simulator Block**: Simulates investment growth based on historical market data.
 
-5. Reporting and Analysis Blocks
-Budget Analysis Block: Analyzes spending patterns and suggests improvements.
-Investment Performance Block: Tracks and reports on investment performance.
-Savings Progress Block: Visualizes progress towards savings goals.
+3. **Savings Plan Blocks**
+
+    a. **Savings Calculator Block**: Calculates savings over time based on user inputs like amount, interest rate, and time.
+    b. **Emergency Fund Planner Block**: Helps in planning and setting aside funds for emergencies.
+    c. **Goal-Oriented Savings Block**: For specific goals like education, travel, etc.
+
+4. **Financial Education Blocks**
+
+    a. **Financial Terms Glossary Block**: Explains key financial terms and concepts.
+    b. **Scenario-Based Learning Block**: Provides real-life financial scenarios for practice.
+    c. **Quizzes and Tests Block**: To assess financial literacy progress.
+
+5. **Reporting and Analysis Blocks**
+
+    a. **Budget Analysis Block**: Analyzes spending patterns and suggests improvements.
+    b. **Investment Performance Block**: Tracks and reports on investment performance.
+    c. **Savings Progress Block**: Visualizes progress towards savings goals.
