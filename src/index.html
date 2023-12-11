@@ -4,6 +4,7 @@
     <title>Financial Planning with Blockly</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
+    <script src="DefaultBlocks.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
@@ -48,6 +49,8 @@
             scrollbars: true
         });
 
+        var defaultBlocksDom = Blockly.utils.xml.textToDom(DefaultBlocks);
+        Blockly.Xml.domToWorkspace(DefaultBlocksDom, workspace);
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
