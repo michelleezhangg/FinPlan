@@ -1,0 +1,43 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="income_block" id="+|#9,^yHMJ0|ss4R7K^s" x="224" y="23">
+    <field name="SOURCE">SALARY</field>
+    <value name="AMOUNT">
+      <block type="input_number" id="Ee`!BQYKvpZ|#7!xN,mF">
+        <field name="NUM">100</field>
+      </block>
+    </value>
+    <next>
+      <block type="income_block" id="u:TlH$:PnoJ;0?~MLu(r">
+        <field name="SOURCE">SALARY</field>
+        <value name="AMOUNT">
+          <block type="input_number" id="RRA4s0[+g:Z7Ds{5fd8w">
+            <field name="NUM">50</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="expense_block" id="^p8X:x(`I}=?^Ub)4h7S" x="41" y="119">
+    <field name="CATEGORY">RENT</field>
+    <value name="AMOUNT">
+      <block type="input_number" id="7RWlf4k1Ma%PzU`Upobs">
+        <field name="NUM">50</field>
+      </block>
+    </value>
+  </block>
+  <block type="investment_simulator_block" id="S]}(nNp^^(/k@D%Ie2j?" x="126" y="182">
+    <field name="YEARS">10</field>
+    <value name="ALLOCATION">
+      <block type="asset_allocation_block" id="ig8~%0c6#ZkOf1W8KlN1">
+        <field name="STOCKS">60</field>
+        <field name="BONDS">30</field>
+        <field name="OTHERS">10</field>
+        <value name="RISK_LEVEL">
+          <block type="risk_assessment_block" id="}:Txic;__t,8RJtY`4vd">
+            <field name="RISK">LOW</field>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>
